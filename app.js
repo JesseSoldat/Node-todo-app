@@ -1,6 +1,5 @@
 var express = require('express');
 var todoController = require('./controllers/todoController');
-var bodyParser = require('body-parser');
 var port = 3000;
 
 var app = express();
