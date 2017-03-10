@@ -1,13 +1,16 @@
 var bodyParser = require('body-parser');
+var fs = require('fs');
 var urlencodedParser = bodyParser.urlencoded({extended: false});
+// var data = require('../public/assets/data.json');
+var data = require('../myjsonfile.json');
 
-var data = [
-	{item: 'Walk Dog'},
-	{item: 'Take Out Garbage'},
-	{item: 'Read More'},
-	{item: 'Code More'},
 
-];
+// var data = [
+// 	{item: 'Walk Dog'},
+// 	{item: 'Take Out Garbage'},
+// 	{item: 'Read More'},
+// 	{item: 'Code More'},
+// ];
 
 module.exports = function(app){
 
@@ -17,6 +20,9 @@ module.exports = function(app){
 
 	app.post('/todo', urlencodedParser, function(req, res){
 		data.push(req.body);
+		var jsonData = JSON.stringify(data);
+		fs.writeFile('myjsonfile.json', jsonData, 'utf8', function(){
+		});
 		res.json(data);
 	});
 
@@ -26,6 +32,9 @@ module.exports = function(app){
 			//filter through data objects and replace all white space Walk Dog => Walk-Dog
 			// if Walk-Dog !== req.params.item (Mow-Lawn) return if it is TRUE
 			// Walk-Dog !== Walk-Dog FALSE Filter it
+		});
+		var jsonData = JSON.stringify(data);
+		fs.writeFile('myjsonfile.json', jsonData, 'utf8', function(){
 		});
 		res.json(data);
 	});
