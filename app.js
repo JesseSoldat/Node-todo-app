@@ -5,6 +5,7 @@ var port = 3000;
 
 var app = express();
 
+//default look in views folder
 app.set('view engine', 'ejs');
 
 //static files every route will look in the /public folder
